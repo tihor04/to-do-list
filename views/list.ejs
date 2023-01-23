@@ -7,13 +7,17 @@
     
     <div class="box">
       
-        <% for(var i=0;i<newitems.length;i++){ %>
+        <% newitems.forEach(function(element){ %>
+          <form action="/delete" method="post">
           <div class="item">
-            <input type="checkbox">
-            <p><%= newitems[i ]%></p>
+            <input type="checkbox" onchange="this.form.submit()" name="checkBox" value="<%= element._id %>">
+            <p><%= element.name%></p>
+            <input type="hidden" name="listname" value="<%=kindofday%>"></input>
           </div>
-          
-      <%  } %>
+        </form>
+
+       <% }) %>
+        
 
       <form  class="item" action="/" method="post">
         <input type="text" name="entry" placeholder="Enter Task Here" autocomplete="off" />
@@ -24,6 +28,6 @@
 
 
     <%- include("footer") -%>
-
+    
 
    
